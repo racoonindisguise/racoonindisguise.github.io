@@ -18,24 +18,32 @@
     button:hover {
       background-color: #3e8e41;
     }
+    #game-container {
+      position: relative;
+    }
+    #close-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <h1>Tyler's Website!</h1>
   <button id="monkey-game-btn">Monkey Game</button>
-  <div id="game-container"></div>
+  <div id="game-container">
+    <div id="close-btn" onclick="document.getElementById('game-container').innerHTML = '';">×</div>
+    <iframe id="game-iframe" frameborder="0" width="100%" height="500px"></iframe>
+  </div>
 
   <script>
-    const gameContainer = document.getElementById('game-container');
     const monkeyGameBtn = document.getElementById('monkey-game-btn');
+    const gameContainer = document.getElementById('game-container');
+    const gameIframe = document.getElementById('game-iframe');
 
     monkeyGameBtn.addEventListener('click', () => {
-      const iframe = document.createElement('iframe');
-      iframe.src = 'https://games.cdn.famobi.com/html5games/k/kumba-kool/v120/?fg_domain=play.famobi.com&fg_aid=A1000-1&fg_uid=16afbe05-a248-4978-b982-57cd59f5d615&fg_pid=4638e320-4444-4514-81c4-d80a8c662371&fg_beat=530&original_ref=https%3A%2F%2Fgames.cdn.famobi.com%2F#_ga=1.205755408.2015710796.1448973940';
-      iframe.width = '100%';
-      iframe.height = '500px';
-      iframe.frameBorder = '0';
-      gameContainer.appendChild(iframe);
+      gameIframe.src = 'https://games.cdn.famobi.com/html5games/k/kumba-kool/v120/?fg_domain=play.famobi.com&fg_aid=A1000-1&fg_uid=16afbe05-a248-4978-b982-57cd59f5d615&fg_pid=4638e320-4444-4514-81c4-d80a8c662371&fg_beat=530&original_ref=https%3A%2F%2Fgames.cdn.famobi.com%2F#_ga=1.205755408.2015710796.1448973940';
     });
   </script>
 </body>
