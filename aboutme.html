@@ -30,13 +30,27 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* subtle shadow */
     }
+    .go-back-btn {
+      background-color: #4CAF50; /* green button */
+      color: #ffffff; /* white text */
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 10px; /* rounded edges */
+    }
+    .go-back-btn:hover {
+      background-color: #3e8e41; /* darker green on hover */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* subtle shadow on hover */
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>About Me</h1>
     <p>I am a video game coder and I made this website out of curiosity on how far I could get, and now I'm here!</p>
-    <p>enjoy!</p>
+    <p>*enjoy*</p>
+    <button class="go-back-btn" onclick="location.href='index.html'">Go Back</button>
   </div>
 </body>
 </html>
