@@ -25,12 +25,12 @@
       font-weight: bold;
       animation: fadeInOut 3s infinite; /* add animation */
     }
-   .game-btns {
+    .game-btns {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
     }
-   .game-btn {
+    .game-btn {
       background-color: #34A853; /* modern green color */
       color: #ffffff;
       padding: 12px 24px;
@@ -40,10 +40,10 @@
       margin: 10px;
       transition: background-color 0.2s ease; /* add a transition effect */
     }
-   .game-btn:hover {
+    .game-btn:hover {
       background-color: #2F7A3B; /* darker green on hover */
     }
-   .game-btn:focus {
+    .game-btn:focus {
       box-shadow: 0 0 0 2px #34A853; /* add a focus effect */
     }
     /* animation keyframes */
@@ -58,44 +58,15 @@
         opacity: 0;
       }
     }
-    /* add styles for the about me link and modal */
-   .about-me-link {
+    /* add styles for the about me link */
+    .about-me-link {
       font-size: 18px;
       color: #ffffff;
       text-decoration: none;
       margin-top: 20px;
     }
-   .about-me-link:hover {
+    .about-me-link:hover {
       color: #ccccff; /* light blue on hover */
-    }
-   .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: none;
-      justify-content: center;
-      align-items: center;
-    }
-   .modal-content {
-      background-color: #ffffff;
-      padding: 20px;
-      border-radius: 10px;
-      width: 50%;
-      margin: 40px auto;
-    }
-   .modal-content p {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-   .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 24px;
-      cursor: pointer;
     }
   </style>
 </head>
@@ -110,7 +81,6 @@
     <button class="game-btn" id="fnaf1-btn" onclick="location.href='fnaf1game.html'">Fnaf 1</button>
     <button class="game-btn" id="minecraft-btn" onclick="location.href='eaglercraft.1.5.2.html'">Minecraft</button>
   </div>
-  <a href="#" class="about-me-link" id="about-me-link">About Me</a>
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="close-btn" id="
+  <a href="aboutme.html" class="about-me-link">About Me</a>
+</body>
+</html>
