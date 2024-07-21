@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tyler's Website!</title>
+  <title>Tyler's Happy Place</title>
+  <link rel="icon" type="image/png" href="logo.png">
   <style>
     body {
       font-family: 'Poppins', sans-serif; /* modern font */
@@ -23,39 +24,55 @@
       color: #ffffff; /* changed text color to white */
       margin-bottom: 20px;
       font-weight: bold;
-      animation: fadeInOut 3s infinite; /* add animation */
+      opacity: 0; /* initial opacity */
+      transform: translateY(50px); /* initial translate */
+      animation: fadeInUp 1s forwards, bob 2s infinite; /* add animation */
     }
     .game-btns {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      opacity: 0; /* initial opacity */
+      transform: translateY(50px); /* initial translate */
+      animation: fadeInUp 1s forwards; /* add animation */
     }
     .game-btn {
-      background-color: #34A853; /* modern green color */
+      background-color: #FF0000; /* changed to red */
       color: #ffffff;
       padding: 12px 24px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       margin: 10px;
-      transition: background-color 0.2s ease; /* add a transition effect */
+      transition: background-color 1s ease; /* add a transition effect */
     }
     .game-btn:hover {
-      background-color: #2F7A3B; /* darker green on hover */
+      background-color: #ffffff; /* changed to white on hover */
+      color: #000000; /* changed text color to black on hover */
     }
     .game-btn:focus {
-      box-shadow: 0 0 0 2px #34A853; /* add a focus effect */
+      box-shadow: 0 0 0 2px #FF0000; /* add a focus effect */
     }
     /* animation keyframes */
-    @keyframes fadeInOut {
+    @keyframes fadeInUp {
       0% {
         opacity: 0;
-      }
-      50% {
-        opacity: 1;
+        transform: translateY(50px);
       }
       100% {
-        opacity: 0;
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes bob {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
       }
     }
     /* add styles for the about me link */
@@ -64,6 +81,9 @@
       color: #ffffff;
       text-decoration: none;
       margin-top: 20px;
+      opacity: 0; /* initial opacity */
+      transform: translateY(50px); /* initial translate */
+      animation: fadeInUp 1s forwards; /* add animation */
     }
     .about-me-link:hover {
       color: #ccccff; /* light blue on hover */
@@ -71,7 +91,7 @@
   </style>
 </head>
 <body>
-  <h1>Tyler's Website!</h1>
+  <h1>Tyler's Happy Place</h1>
   <div class="game-btns">
     <button class="game-btn" id="bubble-game-btn" onclick="location.href='game.html'">Bubble Pop</button>
     <button class="game-btn" id="subway-surfers-btn" onclick="location.href='game2.html'">Subway Surfers</button>
