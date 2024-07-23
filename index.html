@@ -50,13 +50,12 @@
             border-radius: 8px;
             cursor: pointer;
             margin: 10px;
-            transition: background 0.3s ease, color 0.3s ease;
+            transition: background 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
-            animation: changeGradient 5s linear infinite, colorChange 5s infinite; /* Gradient and color change animation */
+            animation: changeGradient 5s linear infinite; /* Gradient animation */
         }
         .game-btn:hover {
             background-size: 400%; /* Increase size on hover */
-            color: #ffffff; /* Text color on hover */
             animation: none; /* Stop animation on hover */
         }
         .game-btn:focus {
@@ -74,20 +73,6 @@
             }
             75% {
                 background: linear-gradient(45deg, #BBB, #DDD); /* Gradient transition */
-            }
-        }
-        @keyframes colorChange {
-            0%, 100% {
-                color: #ffffff; /* Base text color */
-            }
-            25% {
-                color: #ffcc00; /* Text color transition */
-            }
-            50% {
-                color: #ff9900; /* Text color transition */
-            }
-            75% {
-                color: #ff6600; /* Text color transition */
             }
         }
         .about-me-link {
