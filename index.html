@@ -43,23 +43,27 @@
             margin-top: 30px;
         }
         .game-btn {
-            background-color: #3498db; /* Blue background color */
+            background-color: #4CAF50; /* Green background color */
             color: #ffffff; /* Text color */
             padding: 12px 24px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             margin: 10px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-out;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
             font-size: 1em;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
             outline: none;
         }
         .game-btn:hover {
-            background-color: #2980b9; /* Darker blue on hover */
+            background-color: #45a049; /* Darker green on hover */
+            transform: translateY(-5px); /* Lift button slightly */
         }
         .game-btn:focus {
-            box-shadow: 0 0 0 2px #2980b9;
+            box-shadow: 0 0 0 2px #4CAF50; /* Green outline on focus */
         }
         .about-me-link {
             font-size: 18px;
@@ -134,7 +138,7 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            width: 200px; /* Adjust size as needed */
+            width: 180px; /* Adjust size as needed */
             height: auto;
         }
 
@@ -142,8 +146,8 @@
         .menu-btn {
             position: fixed;
             top: 20px;
-            right: 30px; /* Adjusted right position */
-            background-color: #4CAF50; /* Green background color */
+            left: 20px;
+            background-color: #333; /* Background color */
             color: #ffffff;
             border: none;
             padding: 10px 20px;
@@ -153,35 +157,39 @@
             outline: none;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-
         .menu-btn:hover {
-            background-color: #45a049; /* Darker green on hover */
+            background-color: #555; /* Darker background on hover */
         }
-
         .menu-btn:focus {
             outline: none; /* Remove outline on focus */
         }
 
-        /* Close button in menu */
+        /* Close button styling */
         .close-btn {
             position: absolute;
             top: 20px;
             right: 20px;
+            background-color: transparent;
             color: #ffffff;
-            font-size: 1.5em;
+            border: none;
+            padding: 10px;
             cursor: pointer;
-            z-index: 1500; /* Higher z-index to appear in front of menu */
+            font-size: 1.5em;
+            z-index: 1500; /* Ensure it's on top of the menu */
+            outline: none;
+            transition: color 0.3s ease;
+            display: none; /* Initially hidden */
         }
         .close-btn:hover {
-            color: #ccccff;
+            color: #ccccff; /* Lighter color on hover */
         }
     </style>
 </head>
 <body>
-    <button class="menu-btn" id="menu-btn">☰ Menu</button>
+    <button class="menu-btn" id="menuBtn">☰ Menu</button>
 
     <div class="menu" id="menu">
-        <button class="close-btn" id="close-btn">×</button>
+        <button class="close-btn" id="closeBtn">×</button>
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="https://racoonindisguise.github.io/tylers.happy.place/other/morestuff.html">More Games</a></li>
@@ -194,29 +202,31 @@
         <h1>Tyler's Happy Place</h1>
 
         <div class="game-btns">
-            <button class="game-btn" id="bubble-game-btn" onclick="location.href='game.html'">Bubble Pop</button>
-            <button class="game-btn" id="subway-surfers-btn" onclick="location.href='game2.html'">Subway Surfers</button>
-            <button class="game-btn" id="solitaire-btn" onclick="location.href='game3.html'">Solitaire</button>
-            <button class="game-btn" id="gdash-btn" onclick="location.href='Geometry Dash World Toxic Factory (1).html'">Geometry Dash</button>
-            <button class="game-btn" id="ruffle-btn" onclick="location.href='flash.html'">Ruffle Flash Emulator</button>
-            <button class="game-btn" id="fnaf1-btn" onclick="location.href='fnaf1game.html'">Fnaf 1</button>
-            <button class="game-btn" id="minecraft-btn" onclick="location.href='eaglercraft.1.5.2.html'">Minecraft</button>
+            <button class="game-btn" onclick="location.href='game.html'">Bubble Pop</button>
+            <button class="game-btn" onclick="location.href='game2.html'">Subway Surfers</button>
+            <button class="game-btn" onclick="location.href='game3.html'">Solitaire</button>
+            <button class="game-btn" onclick="location.href='Geometry Dash World Toxic Factory (1).html'">Geometry Dash</button>
+            <button class="game-btn" onclick="location.href='flash.html'">Ruffle Flash Emulator</button>
+            <button class="game-btn" onclick="location.href='fnaf1game.html'">Fnaf 1</button>
+            <button class="game-btn" onclick="location.href='eaglercraft.1.5.2.html'">Minecraft</button>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const menuBtn = document.getElementById('menu-btn');
+            const menuBtn = document.getElementById('menuBtn');
             const menu = document.getElementById('menu');
-            const closeBtn = document.getElementById('close-btn');
+            const closeBtn = document.getElementById('closeBtn');
 
-            menuBtn.addEventListener('click', function() {
-                menu.style.left = '0';
+            menuBtn.addEventListener('click', () => {
+                menu.classList.add('open');
                 menuBtn.style.display = 'none';
+                closeBtn.style.display = 'block';
             });
 
-            closeBtn.addEventListener('click', function() {
-                menu.style.left = '-300px';
+            closeBtn.addEventListener('click', () => {
+                menu.classList.remove('open');
+                closeBtn.style.display = 'none';
                 menuBtn.style.display = 'block';
             });
 
@@ -224,7 +234,8 @@
             const menuItems = document.querySelectorAll('.menu a');
             menuItems.forEach(item => {
                 item.addEventListener('click', () => {
-                    menu.style.left = '-300px';
+                    menu.classList.remove('open');
+                    closeBtn.style.display = 'none';
                     menuBtn.style.display = 'block';
                 });
             });
