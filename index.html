@@ -43,7 +43,7 @@
             margin-top: 30px;
         }
         .game-btn {
-            background: linear-gradient(45deg, #FF0000, #FFA500, #FFFF00, #00FF00, #0000FF, #800080); /* Gradient background */
+            background: linear-gradient(45deg, var(--gradient-color-1), var(--gradient-color-2), var(--gradient-color-3), var(--gradient-color-4), var(--gradient-color-5)); /* Gradient background */
             color: #ffffff;
             padding: 12px 24px;
             border: none;
@@ -52,21 +52,51 @@
             margin: 10px;
             transition: background 0.3s ease, color 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added box-shadow */
+            animation: changeGradient 10s linear infinite;
         }
         .game-btn:hover {
             background-size: 400%;
             color: #ffffff;
-            animation: gradientBG 3s ease infinite;
+            animation: none; /* Stop animation on hover */
         }
         .game-btn:focus {
             box-shadow: 0 0 0 2px #FF0000;
         }
-        @keyframes gradientBG {
-            0%, 100% {
-                background-position: 0% 50%;
+        @keyframes changeGradient {
+            0% {
+                --gradient-color-1: #FF0000;
+                --gradient-color-2: #FFA500;
+                --gradient-color-3: #FFFF00;
+                --gradient-color-4: #00FF00;
+                --gradient-color-5: #0000FF;
+            }
+            25% {
+                --gradient-color-1: #00FF00;
+                --gradient-color-2: #FFFF00;
+                --gradient-color-3: #0000FF;
+                --gradient-color-4: #FF0000;
+                --gradient-color-5: #FFA500;
             }
             50% {
-                background-position: 100% 50%;
+                --gradient-color-1: #0000FF;
+                --gradient-color-2: #FF0000;
+                --gradient-color-3: #FFA500;
+                --gradient-color-4: #00FF00;
+                --gradient-color-5: #FFFF00;
+            }
+            75% {
+                --gradient-color-1: #FFFF00;
+                --gradient-color-2: #00FF00;
+                --gradient-color-3: #FF0000;
+                --gradient-color-4: #FFA500;
+                --gradient-color-5: #0000FF;
+            }
+            100% {
+                --gradient-color-1: #FFA500;
+                --gradient-color-2: #0000FF;
+                --gradient-color-3: #FFFF00;
+                --gradient-color-4: #FF0000;
+                --gradient-color-5: #00FF00;
             }
         }
         .about-me-link {
