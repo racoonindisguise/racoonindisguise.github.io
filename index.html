@@ -101,6 +101,7 @@
             text-decoration: none;
             font-size: 1.2em;
             transition: color 0.3s ease;
+            display: block;
         }
         .menu ul li a:hover {
             color: #ccccff;
@@ -130,15 +131,15 @@
     <div class="menu" id="menu">
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Bubble Pop</a></li>
-            <li><a href="#">Subway Surfers</a></li>
-            <li><a href="#">Solitaire</a></li>
-            <li><a href="#">Geometry Dash</a></li>
-            <li><a href="#">Ruffle Flash Emulator</a></li>
-            <li><a href="#">Fnaf 1</a></li>
-            <li><a href="#">Minecraft</a></li>
-            <li><a href="#">More Games</a></li>
-            <li><a href="#">About Me</a></li>
+            <li><a href="game.html">Bubble Pop</a></li>
+            <li><a href="game2.html">Subway Surfers</a></li>
+            <li><a href="game3.html">Solitaire</a></li>
+            <li><a href="Geometry Dash World Toxic Factory (1).html">Geometry Dash</a></li>
+            <li><a href="flash.html">Ruffle Flash Emulator</a></li>
+            <li><a href="fnaf1game.html">Fnaf 1</a></li>
+            <li><a href="eaglercraft.1.5.2.html">Minecraft</a></li>
+            <li><a href="https://racoonindisguise.github.io/tylers.happy.place/other/morestuff.html">More Games</a></li>
+            <li><a href="aboutme.html">About Me</a></li>
         </ul>
     </div>
 
@@ -146,17 +147,17 @@
         <h1>Tyler's Happy Place <img src="starlogo.png" alt="Star Logo" width="40" height="38" style="vertical-align: middle; margin-left: 10px;"></h1>
 
         <div class="game-btns">
-            <button class="game-btn" id="bubble-game-btn">Bubble Pop</button>
-            <button class="game-btn" id="subway-surfers-btn">Subway Surfers</button>
-            <button class="game-btn" id="solitaire-btn">Solitaire</button>
-            <button class="game-btn" id="gdash-btn">Geometry Dash</button>
-            <button class="game-btn" id="ruffle-btn">Ruffle Flash Emulator</button>
-            <button class="game-btn" id="fnaf1-btn">Fnaf 1</button>
-            <button class="game-btn" id="minecraft-btn">Minecraft</button>
+            <button class="game-btn" id="bubble-game-btn" onclick="location.href='game.html'">Bubble Pop</button>
+            <button class="game-btn" id="subway-surfers-btn" onclick="location.href='game2.html'">Subway Surfers</button>
+            <button class="game-btn" id="solitaire-btn" onclick="location.href='game3.html'">Solitaire</button>
+            <button class="game-btn" id="gdash-btn" onclick="location.href='Geometry Dash World Toxic Factory (1).html'">Geometry Dash</button>
+            <button class="game-btn" id="ruffle-btn" onclick="location.href='flash.html'">Ruffle Flash Emulator</button>
+            <button class="game-btn" id="fnaf1-btn" onclick="location.href='fnaf1game.html'">Fnaf 1</button>
+            <button class="game-btn" id="minecraft-btn" onclick="location.href='eaglercraft.1.5.2.html'">Minecraft</button>
         </div>
 
-        <button class="game-btn" id="morestuff-btn">More Games</button>
-        <a href="#" class="about-me-link">About Me</a>
+        <button class="game-btn" id="morestuff-btn" onclick="location.href='https://racoonindisguise.github.io/tylers.happy.place/other/morestuff.html'">More Games</button>
+        <a href="aboutme.html" class="about-me-link">About Me</a>
     </div>
 
     <script>
@@ -173,6 +174,15 @@
                 menu.classList.toggle('open');
             };
             document.body.appendChild(menuButton);
+
+            // Close menu when clicking on a menu item
+            const menuItems = document.querySelectorAll('.menu a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const menu = document.getElementById('menu');
+                    menu.classList.remove('open');
+                });
+            });
         });
     </script>
 </body>
