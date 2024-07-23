@@ -50,10 +50,10 @@
             border-radius: 8px;
             cursor: pointer;
             margin: 10px;
+            transition: background 0.3s ease, color 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
             position: relative;
             overflow: hidden;
-            transition: background 0.4s ease-in-out, color 0.4s ease-in-out;
         }
         .game-btn::before {
             content: '';
@@ -81,17 +81,6 @@
         }
         .game-btn:focus {
             box-shadow: 0 0 0 2px #FF0000;
-        }
-        @keyframes changeGradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
         }
         .about-me-link {
             font-size: 18px;
