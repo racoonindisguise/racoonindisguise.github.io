@@ -43,16 +43,16 @@
             margin-top: 30px;
         }
         .game-btn {
-            background: linear-gradient(45deg, #555, #777); /* Base gradient background */
+            background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff80, #0080ff, #8000ff); /* Rainbow gradient */
             color: #ffffff; /* Text color */
             padding: 12px 24px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             margin: 10px;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
-            animation: changeGradient 5s linear infinite; /* Gradient animation */
+            animation: changeGradient 10s linear infinite; /* Gradient animation */
         }
         .game-btn:hover {
             background-size: 400%; /* Increase size on hover */
@@ -62,17 +62,14 @@
             box-shadow: 0 0 0 2px #FF0000;
         }
         @keyframes changeGradient {
-            0%, 100% {
-                background: linear-gradient(45deg, #555, #777); /* Base gradient */
-            }
-            25% {
-                background: linear-gradient(45deg, #777, #999); /* Gradient transition */
+            0% {
+                background-position: 0% 50%;
             }
             50% {
-                background: linear-gradient(45deg, #999, #BBB); /* Gradient transition */
+                background-position: 100% 50%;
             }
-            75% {
-                background: linear-gradient(45deg, #BBB, #DDD); /* Gradient transition */
+            100% {
+                background-position: 0% 50%;
             }
         }
         .about-me-link {
