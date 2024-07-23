@@ -1,120 +1,179 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Tyler's Happy Place</title>
-  <link rel="icon" type="image/png" href="starlogo.png">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif; /* modern font */
-      text-align: center;
-      background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/41810341995087.57bd505fc7b34.gif'); /* add a looping background */
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh; /* make the body full height */
-      margin: 0;
-    }
-    h1 {
-      font-size: 64px; /* increased font size */
-      color: #ffffff; /* changed text color to white */
-      margin-bottom: 20px;
-      font-weight: bold;
-      opacity: 0; /* initial opacity */
-      transform: translateY(50px); /* initial translate */
-      animation: fadeInUp 1s forwards, bob 2s infinite; /* add animation */
-    }
-    .game-btns {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      opacity: 0; /* initial opacity */
-      transform: translateY(50px); /* initial translate */
-      animation: fadeInUp 1s forwards; /* add animation */
-    }
-    .game-btn {
-      background-color: #FF0000; /* changed to red */
-      color: #ffffff;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin: 10px;
-      transition: background-color 1s ease; /* add a transition effect */
-    }
-    .game-btn:hover {
-      background-color: #ffffff; /* changed to white on hover */
-      color: #000000; /* changed text color to black on hover */
-    }
-    .game-btn:focus {
-      box-shadow: 0 0 0 2px #FF0000; /* add a focus effect */
-    }
-    /* animation keyframes */
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @keyframes bob {
-      0% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-      100% {
-        transform: translateY(0);
-      }
-    }
-    /* add styles for the about me link */
-    .about-me-link {
-      font-size: 18px;
-      color: #ffffff;
-      text-decoration: none;
-      margin-top: 20px;
-      opacity: 0; /* initial opacity */
-      transform: translateY(50px); /* initial translate */
-      animation: fadeInUp 1s forwards; /* add animation */
-    }
-    .about-me-link:hover {
-      color: #ccccff; /* light blue on hover */
-    }
-    /* add styles for the sliding menu */
-    .sliding-menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background-color: #333;
-      transform: translateX(-100%);
-      transition: transform 0.5s ease;
-    }
-    .sliding-menu.open {
-      transform: translateX(0);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tyler's Happy Place</title>
+    <link rel="icon" type="image/png" href="starlogo.png">
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/41810341995087.57bd505fc7b34.gif');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 3em;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-weight: bold;
+            animation: fadeInUp 1s forwards, bob 2s infinite;
+        }
+        .game-btns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s forwards;
+            margin-top: 30px;
+        }
+        .game-btn {
+            background-color: #FF0000;
+            color: #ffffff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .game-btn:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .game-btn:focus {
+            box-shadow: 0 0 0 2px #FF0000;
+        }
+        .about-me-link {
+            font-size: 18px;
+            color: #ffffff;
+            text-decoration: none;
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s forwards;
+            transition: color 0.3s ease;
+        }
+        .about-me-link:hover {
+            color: #ccccff;
+        }
+        /* Sliding menu */
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -300px; /* Initially off-screen */
+            width: 300px;
+            height: 100%;
+            background-color: #333;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .menu.open {
+            left: 0;
+        }
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .menu ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #555;
+        }
+        .menu ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+        .menu ul li a:hover {
+            color: #ccccff;
+        }
+        /* Animation keyframes */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes bob {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Tyler's Happy Place <img src="starlogo.png" alt="Star Logo" width="200" height="192" style="vertical-align: middle; margin-left: 10px;"></h1>
+    <div class="menu" id="menu">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Bubble Pop</a></li>
+            <li><a href="#">Subway Surfers</a></li>
+            <li><a href="#">Solitaire</a></li>
+            <li><a href="#">Geometry Dash</a></li>
+            <li><a href="#">Ruffle Flash Emulator</a></li>
+            <li><a href="#">Fnaf 1</a></li>
+            <li><a href="#">Minecraft</a></li>
+            <li><a href="#">More Games</a></li>
+            <li><a href="#">About Me</a></li>
+        </ul>
+    </div>
 
-  <div class="game-btns">
-    <button class="game-btn" id="bubble-game-btn" onclick="location.href='game.html'">Bubble Pop</button>
-    <button class="game-btn" id="subway-surfers-btn" onclick="location.href='game2.html'">Subway Surfers</button>
-    <button class="game-btn" id="solitaire-btn" onclick="location.href='game3.html'">Solitaire</button>
-    <button class="game-btn" id="gdash-btn" onclick="location.href='Geometry Dash World Toxic Factory (1).html'">Geometry Dash</button>
-    <button class="game-btn" id="ruffle-btn" onclick="location.href='flash.html'">Ruffle Flash Emulator</button>
-    <button class="game-btn" id="fnaf1-btn" onclick="location.href='fnaf1game.html'">Fnaf 1</button>
-    <button class="game-btn" id="minecraft-btn" onclick="location.href='eaglercraft.1.5.2.html'">Minecraft</button>
-  </div>
-   <button class="game-btn" id="morestuff-btn" onclick="location.href='https://racoonindisguise.github.io/tylers.happy.place/other/morestuff.html'">More Games</button>
-  <a href="aboutme.html" class="about-me-link">About Me</a>
+    <div class="container">
+        <h1>Tyler's Happy Place <img src="starlogo.png" alt="Star Logo" width="40" height="38" style="vertical-align: middle; margin-left: 10px;"></h1>
+
+        <div class="game-btns">
+            <button class="game-btn" id="bubble-game-btn">Bubble Pop</button>
+            <button class="game-btn" id="subway-surfers-btn">Subway Surfers</button>
+            <button class="game-btn" id="solitaire-btn">Solitaire</button>
+            <button class="game-btn" id="gdash-btn">Geometry Dash</button>
+            <button class="game-btn" id="ruffle-btn">Ruffle Flash Emulator</button>
+            <button class="game-btn" id="fnaf1-btn">Fnaf 1</button>
+            <button class="game-btn" id="minecraft-btn">Minecraft</button>
+        </div>
+
+        <button class="game-btn" id="morestuff-btn">More Games</button>
+        <a href="#" class="about-me-link">About Me</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.createElement('button');
+            menuButton.innerText = '☰ Menu';
+            menuButton.classList.add('game-btn');
+            menuButton.style.position = 'fixed';
+            menuButton.style.top = '20px';
+            menuButton.style.left = '20px';
+            menuButton.style.zIndex = '1000';
+            menuButton.onclick = function() {
+                const menu = document.getElementById('menu');
+                menu.classList.toggle('open');
+            };
+            document.body.appendChild(menuButton);
+        });
+    </script>
 </body>
 </html>
