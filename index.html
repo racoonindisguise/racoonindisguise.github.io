@@ -1,5 +1,3 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,10 +86,24 @@
     .about-me-link:hover {
       color: #ccccff; /* light blue on hover */
     }
+    /* add styles for the sliding menu */
+    .sliding-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: #333;
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+    .sliding-menu.open {
+      transform: translateX(0);
+    }
   </style>
 </head>
 <body>
-<h1>Tyler's Happy Place <img src="starlogo.png" alt="Star Logo" width="200" height="192" style="vertical-align: middle; margin-left: 10px;"></h1>
+  <h1>Tyler's Happy Place <img src="starlogo.png" alt="Star Logo" width="200" height="192" style="vertical-align: middle; margin-left: 10px;"></h1>
 
   <div class="game-btns">
     <button class="game-btn" id="bubble-game-btn" onclick="location.href='game.html'">Bubble Pop</button>
