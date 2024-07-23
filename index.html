@@ -55,8 +55,13 @@
             animation: changeGradient 10s linear infinite; /* Gradient animation */
         }
         .game-btn:hover {
-            background-size: 400%; /* Increase size on hover */
+            background-size: 800%; /* Increase size on hover */
             animation: none; /* Stop animation on hover */
+            background-color: transparent; /* Prevent default color fill */
+            transition: background 0.3s ease, color 0.3s ease; /* Smooth transition */
+            background-image: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff80, #0080ff, #8000ff); /* Rainbow gradient */
+            background-position: 100% 0; /* Start from end to create smooth effect */
+            color: #ffffff; /* Text color */
         }
         .game-btn:focus {
             box-shadow: 0 0 0 2px #FF0000;
