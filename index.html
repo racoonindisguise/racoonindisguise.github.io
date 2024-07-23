@@ -43,6 +43,7 @@
             margin-top: 30px;
         }
         .game-btn {
+            position: relative;
             background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff80, #0080ff, #8000ff); /* Rainbow gradient */
             color: #ffffff; /* Text color */
             padding: 12px 24px;
@@ -52,7 +53,6 @@
             margin: 10px;
             transition: background 0.3s ease, color 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
-            position: relative;
             overflow: hidden;
         }
         .game-btn::before {
@@ -72,12 +72,20 @@
         .game-btn span {
             position: relative;
             z-index: 1;
-        }
-        .game-btn:hover {
-            color: transparent; /* Hide text on hover */
+            transition: opacity 0.5s ease-out; /* Transition for text opacity */
         }
         .game-btn:hover span {
-            color: #ffffff; /* Text color on hover */
+            opacity: 0; /* Hide text on hover */
+        }
+        .game-btn:hover::after {
+            content: attr(data-text); /* Show data-text on hover */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            z-index: 2;
+            transition: opacity 0.5s ease-out; /* Transition for pseudo-element text */
         }
         .game-btn:focus {
             box-shadow: 0 0 0 2px #FF0000;
@@ -174,13 +182,13 @@
         <h1>Tyler's Happy Place</h1>
 
         <div class="game-btns">
-            <button class="game-btn" id="bubble-game-btn" onclick="location.href='game.html'"><span>Bubble Pop</span></button>
-            <button class="game-btn" id="subway-surfers-btn" onclick="location.href='game2.html'"><span>Subway Surfers</span></button>
-            <button class="game-btn" id="solitaire-btn" onclick="location.href='game3.html'"><span>Solitaire</span></button>
-            <button class="game-btn" id="gdash-btn" onclick="location.href='Geometry Dash World Toxic Factory (1).html'"><span>Geometry Dash</span></button>
-            <button class="game-btn" id="ruffle-btn" onclick="location.href='flash.html'"><span>Ruffle Flash Emulator</span></button>
-            <button class="game-btn" id="fnaf1-btn" onclick="location.href='fnaf1game.html'"><span>Fnaf 1</span></button>
-            <button class="game-btn" id="minecraft-btn" onclick="location.href='eaglercraft.1.5.2.html'"><span>Minecraft</span></button>
+            <button class="game-btn" id="bubble-game-btn" data-text="Bubble Pop" onclick="location.href='game.html'"><span>Bubble Pop</span></button>
+            <button class="game-btn" id="subway-surfers-btn" data-text="Subway Surfers" onclick="location.href='game2.html'"><span>Subway Surfers</span></button>
+            <button class="game-btn" id="solitaire-btn" data-text="Solitaire" onclick="location.href='game3.html'"><span>Solitaire</span></button>
+            <button class="game-btn" id="gdash-btn" data-text="Geometry Dash" onclick="location.href='Geometry Dash World Toxic Factory (1).html'"><span>Geometry Dash</span></button>
+            <button class="game-btn" id="ruffle-btn" data-text="Ruffle Flash Emulator" onclick="location.href='flash.html'"><span>Ruffle Flash Emulator</span></button>
+            <button class="game-btn" id="fnaf1-btn" data-text="Fnaf 1" onclick="location.href='fnaf1game.html'"><span>Fnaf 1</span></button>
+            <button class="game-btn" id="minecraft-btn" data-text="Minecraft" onclick="location.href='eaglercraft.1.5.2.html'"><span>Minecraft</span></button>
         </div>
 
         <a href="https://racoonindisguise.github.io/tylers.happy.place/other/morestuff.html" class="game-btn"><span>More Games</span></a>
@@ -208,6 +216,18 @@
                 item.addEventListener('click', () => {
                     const menu = document.getElementById('menu');
                     menu.classList.remove('open');
+                });
+            });
+
+            // Restore text on game buttons after hover
+            const gameButtons = document.querySelectorAll('.game-btn');
+            gameButtons.forEach(button => {
+                button.addEventListener('mouseleave', () => {
+                    const span = button.querySelector('span');
+                    span.style.opacity = '0';
+                    setTimeout(() => {
+                        span.style.opacity = '1';
+                    }, 500); // 500ms delay
                 });
             });
         });
