@@ -43,52 +43,27 @@
             margin-top: 30px;
         }
         .game-btn {
-            position: relative;
-            background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff80, #0080ff, #8000ff); /* Rainbow gradient */
+            background-color: #4CAF50; /* Green background color */
             color: #ffffff; /* Text color */
             padding: 12px 24px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             margin: 10px;
-            transition: background 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-out;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
-            overflow: hidden;
+            font-size: 1em;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            outline: none;
         }
-        .game-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff80, #0080ff, #8000ff); /* Rainbow gradient */
-            z-index: -1;
-            transition: transform 0.4s ease-in-out;
-        }
-        .game-btn:hover::before {
-            left: 0;
-        }
-        .game-btn span {
-            position: relative;
-            z-index: 1;
-            transition: opacity 0.5s ease-out; /* Transition for text opacity */
-        }
-        .game-btn:hover span {
-            opacity: 0; /* Hide text on hover */
-        }
-        .game-btn:hover::after {
-            content: attr(data-text); /* Show data-text on hover */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ffffff;
-            z-index: 2;
-            transition: opacity 0.5s ease-out; /* Transition for pseudo-element text */
+        .game-btn:hover {
+            background-color: #45a049; /* Darker green on hover */
+            transform: translateY(-5px); /* Lift button slightly */
         }
         .game-btn:focus {
-            box-shadow: 0 0 0 2px #FF0000;
+            box-shadow: 0 0 0 2px #4CAF50; /* Green outline on focus */
         }
         .about-me-link {
             font-size: 18px;
@@ -166,9 +141,30 @@
             width: 100px; /* Adjust size as needed */
             height: auto;
         }
+
+        /* Menu button styling */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: transparent;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            z-index: 1000;
+            outline: none;
+            transition: color 0.3s ease;
+        }
+        .menu-btn:hover {
+            color: #ccccff;
+        }
     </style>
 </head>
 <body>
+    <button class="menu-btn" id="menuBtn">☰ Menu</button>
+
     <div class="menu" id="menu">
         <ul>
             <li><a href="#">Home</a></li>
@@ -182,52 +178,33 @@
         <h1>Tyler's Happy Place</h1>
 
         <div class="game-btns">
-            <button class="game-btn" id="bubble-game-btn" data-text="Bubble Pop" onclick="location.href='game.html'"><span>Bubble Pop</span></button>
-            <button class="game-btn" id="subway-surfers-btn" data-text="Subway Surfers" onclick="location.href='game2.html'"><span>Subway Surfers</span></button>
-            <button class="game-btn" id="solitaire-btn" data-text="Solitaire" onclick="location.href='game3.html'"><span>Solitaire</span></button>
-            <button class="game-btn" id="gdash-btn" data-text="Geometry Dash" onclick="location.href='Geometry Dash World Toxic Factory (1).html'"><span>Geometry Dash</span></button>
-            <button class="game-btn" id="ruffle-btn" data-text="Ruffle Flash Emulator" onclick="location.href='flash.html'"><span>Ruffle Flash Emulator</span></button>
-            <button class="game-btn" id="fnaf1-btn" data-text="Fnaf 1" onclick="location.href='fnaf1game.html'"><span>Fnaf 1</span></button>
-            <button class="game-btn" id="minecraft-btn" data-text="Minecraft" onclick="location.href='eaglercraft.1.5.2.html'"><span>Minecraft</span></button>
+            <button class="game-btn" onclick="location.href='game.html'">Bubble Pop</button>
+            <button class="game-btn" onclick="location.href='game2.html'">Subway Surfers</button>
+            <button class="game-btn" onclick="location.href='game3.html'">Solitaire</button>
+            <button class="game-btn" onclick="location.href='Geometry Dash World Toxic Factory (1).html'">Geometry Dash</button>
+            <button class="game-btn" onclick="location.href='flash.html'">Ruffle Flash Emulator</button>
+            <button class="game-btn" onclick="location.href='fnaf1game.html'">Fnaf 1</button>
+            <button class="game-btn" onclick="location.href='eaglercraft.1.5.2.html'">Minecraft</button>
         </div>
 
-        <a href="https://racoonindisguise.github.io/tylers.happy.place/other/morestuff.html" class="game-btn"><span>More Games</span></a>
-        <a href="aboutme.html" class="about-me-link"><span>About Me</span></a>
+        <a href="https://racoonindisguise.github.io/tylers.happy.place/other/morestuff.html" class="game-btn">More Games</a>
+        <a href="aboutme.html" class="about-me-link">About Me</a>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const menuButton = document.createElement('button');
-            menuButton.innerText = '☰ Menu';
-            menuButton.classList.add('game-btn');
-            menuButton.style.position = 'fixed';
-            menuButton.style.top = '20px';
-            menuButton.style.left = '20px';
-            menuButton.style.zIndex = '1000';
-            menuButton.onclick = function() {
-                const menu = document.getElementById('menu');
+            const menuButton = document.getElementById('menuBtn');
+            const menu = document.getElementById('menu');
+
+            menuButton.addEventListener('click', () => {
                 menu.classList.toggle('open');
-            };
-            document.body.appendChild(menuButton);
+            });
 
             // Close menu when clicking on a menu item
             const menuItems = document.querySelectorAll('.menu a');
             menuItems.forEach(item => {
                 item.addEventListener('click', () => {
-                    const menu = document.getElementById('menu');
                     menu.classList.remove('open');
-                });
-            });
-
-            // Restore text on game buttons after hover
-            const gameButtons = document.querySelectorAll('.game-btn');
-            gameButtons.forEach(button => {
-                button.addEventListener('mouseleave', () => {
-                    const span = button.querySelector('span');
-                    span.style.opacity = '0';
-                    setTimeout(() => {
-                        span.style.opacity = '1';
-                    }, 500); // 500ms delay
                 });
             });
         });
