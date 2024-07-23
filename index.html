@@ -147,18 +147,41 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            background-color: transparent;
+            background-color: #333; /* Background color */
             color: #ffffff;
             border: none;
             padding: 10px 20px;
             cursor: pointer;
             font-size: 1em;
-            z-index: 1000;
+            z-index: 1500; /* Higher z-index to appear in front of menu */
             outline: none;
-            transition: color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .menu-btn:hover {
-            color: #ccccff;
+            background-color: #555; /* Darker background on hover */
+        }
+        .menu-btn:focus {
+            outline: none; /* Remove outline on focus */
+        }
+
+        /* Close button styling */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.5em;
+            z-index: 1500; /* Ensure it's on top of the menu */
+            outline: none;
+            transition: color 0.3s ease;
+            display: none; /* Initially hidden */
+        }
+        .close-btn:hover {
+            color: #ccccff; /* Lighter color on hover */
         }
     </style>
 </head>
@@ -166,6 +189,7 @@
     <button class="menu-btn" id="menuBtn">☰ Menu</button>
 
     <div class="menu" id="menu">
+        <button class="close-btn" id="closeBtn">×</button>
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="https://racoonindisguise.github.io/tylers.happy.place/other/morestuff.html">More Games</a></li>
@@ -193,11 +217,20 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const menuButton = document.getElementById('menuBtn');
+            const menuBtn = document.getElementById('menuBtn');
             const menu = document.getElementById('menu');
+            const closeBtn = document.getElementById('closeBtn');
 
-            menuButton.addEventListener('click', () => {
-                menu.classList.toggle('open');
+            menuBtn.addEventListener('click', () => {
+                menu.classList.add('open');
+                menuBtn.style.display = 'none';
+                closeBtn.style.display = 'block';
+            });
+
+            closeBtn.addEventListener('click', () => {
+                menu.classList.remove('open');
+                closeBtn.style.display = 'none';
+                menuBtn.style.display = 'block';
             });
 
             // Close menu when clicking on a menu item
@@ -205,6 +238,8 @@
             menuItems.forEach(item => {
                 item.addEventListener('click', () => {
                     menu.classList.remove('open');
+                    closeBtn.style.display = 'none';
+                    menuBtn.style.display = 'block';
                 });
             });
         });
