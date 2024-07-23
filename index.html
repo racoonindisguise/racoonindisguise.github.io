@@ -88,6 +88,17 @@
     .about-me-link:hover {
       color: #ccccff; /* light blue on hover */
     }
+        }
+    /* add styles for the moregames me link */
+    .moregame-btn {
+      font-size: 18px;
+      color: #ffffff;
+      text-decoration: none;
+      margin-top: 20px;
+      opacity: 0; /* initial opacity */
+      transform: translateY(50px); /* initial translate */
+      animation: fadeInUp 1s forwards; /* add animation */
+    }
   </style>
 </head>
 <body>
@@ -102,7 +113,7 @@
     <button class="game-btn" id="fnaf1-btn" onclick="location.href='fnaf1game.html'">Fnaf 1</button>
     <button class="game-btn" id="minecraft-btn" onclick="location.href='eaglercraft.1.5.2.html'">Minecraft</button>
   </div>
-   <button class="game-btn" id="morestuff-btn" onclick="location.href='https://racoonindisguise.github.io/tylers.happy.place/other/morestuff.html'">More Games</button>
+   <button class="moregame-btn" id="morestuff-btn" onclick="location.href='https://racoonindisguise.github.io/tylers.happy.place/other/morestuff.html'">More Games</button>
   <a href="aboutme.html" class="about-me-link">About Me</a>
 </body>
 </html>
