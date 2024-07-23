@@ -4,60 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>More Games</title>
-    <style>
-        /* Basic styling */
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/41810341995087.57bd505fc7b34.gif');
-            background-size: cover;
-            background-position: center;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
-        /* Button styling */
-        .button {
-            background-color: #FF0000; /* Red */
-            color: #FFFFFF; /* White text */
-            border: none;
-            padding: 10px 20px;
-            font-size: 19px;
-            cursor: pointer;
-            transition: background-color 1s; /* Transition effect */
-            margin: 10px;
-        }
-        .button:hover {
-            background-color: #FFFFFF; /* White */
-            color: #000000; /* Black text */
-        }
-        /* Menu button styling */
-        .menu-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: #333; /* Dark background */
-            color: #ffffff; /* White text */
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            z-index: 1000; /* Ensure it's on top */
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .menu-btn:hover {
-            background-color: #555; /* Darker background on hover */
-        }
-        .menu-btn:focus {
-            outline: none; /* Remove outline on focus */
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <button class="menu-btn" id="menuBtn">☰ Menu</button>
+    <div class="container">
+        <h1>Welcome to the More Games page!</h1>
+        <p>This is some additional games.</p>
 
-    <!-- Menu div -->
-    <div class="menu" id="menu">
+        <!-- Game buttons -->
         <button class="button" onclick="location.href='supermariobros.html'">Super Mario 64</button>
         <button class="button" onclick="location.href='music.html'">Music</button>
         <button class="button" onclick="location.href='happywheels.html'">Happy Wheels</button>
@@ -68,31 +22,25 @@
         <button class="button" onclick="location.href='proxy.html'">Internet Proxy</button>
         <button class="button" onclick="location.href='flappybird.html'">Flappy Bird</button>
         <button class="button" onclick="location.href='https://racoonindisguise.github.io/tylers.happy.place/WindowsOS/index.html'">WindowsOS</button>
+
+        <!-- Go Back button -->
         <br><br>
         <button class="button" onclick="location.href='https://racoonindisguise.github.io/tylers.happy.place/'">Go Back</button>
     </div>
 
-    <!-- Content -->
-    <h1>Welcome to the More Games page!</h1>
-    <p>This is some additional games.</p>
+    <!-- Menu button -->
+    <button class="menu-btn" id="menuBtn">☰ Menu</button>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuBtn = document.getElementById('menuBtn');
-            const menu = document.getElementById('menu');
+    <!-- Menu -->
+    <div class="menu" id="menu">
+        <button class="close-btn" id="closeBtn">×</button>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="https://racoonindisguise.github.io/tylers.happy.place/other/morestuff.html">More Games</a></li>
+            <li><a href="aboutme.html">About Me</a></li>
+        </ul>
+    </div>
 
-            menuBtn.addEventListener('click', () => {
-                menu.classList.toggle('open');
-            });
-
-            // Close menu when clicking on a menu item
-            const menuItems = document.querySelectorAll('.menu .button');
-            menuItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    menu.classList.remove('open');
-                });
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
