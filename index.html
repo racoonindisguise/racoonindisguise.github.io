@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tyler's Happy Place</title>
+    <link rel="icon" type="image/png" href="starlogo.png">
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/41810341995087.57bd505fc7b34.gif');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+            position: relative; /* Added for positioning star logo */
+        }
+        h1 {
+            font-size: 3em;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-weight: bold;
+            animation: fadeInUp 1s forwards, bob 2s infinite;
+        }
+        .game-btns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s forwards;
+            margin-top: 30px;
+        }
+        .game-btn {
+            background-color: #4CAF50; /* Green background color */
+            color: #ffffff; /* Text color */
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+            font-size: 1em;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            outline: none;
+        }
+        .game-btn:hover {
+            background-color: #45a049; /* Darker green on hover */
+            transform: translateY(-5px); /* Lift button slightly */
+        }
+        .game-btn:focus {
+            box-shadow: 0 0 0 2px #4CAF50; /* Green outline on focus */
+        }
+        .about-me-link {
+            font-size: 18px;
+            color: #ffffff;
+            text-decoration: none;
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s forwards;
+            transition: color 0.3s ease;
+        }
+        .about-me-link:hover {
+            color: #ccccff;
+        }
+        /* Sliding menu */
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -300px; /* Initially off-screen */
+            width: 300px;
+            height: 100%;
+            background-color: #333;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .menu.open {
+            left: 0;
+        }
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .menu ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #555;
+        }
+        .menu ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+            display: block;
+        }
+        .menu ul li a:hover {
+            color: #ccccff;
+        }
+        /* Animation keyframes */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes bob {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Star logo styling */
+        .star-logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 220px; /* Adjust size as needed */
+            height: auto;
+        }
+
+        /* Menu button styling */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #333; /* Background color */
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            z-index: 1500; /* Higher z-index to appear in front of menu */
+            outline: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .menu-btn:hover {
+            background-color: #555; /* Darker background on hover */
+        }
+        .menu-btn:focus {
+            outline: none; /* Remove outline on focus */
+        }
+
+        /* Close button styling */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.5em;
+            z-index: 1500; /* Ensure it's on top of the menu */
+            outline: none;
+            transition: color 0.3s ease;
+            display: none; /* Initially hidden */
+        }
+        .close-btn:hover {
+            color: #ccccff; /* Lighter color on hover */
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-btn" id="menuBtn">☰ Menu</button>
+
+    <div class="menu" id="menu">
+        <button class="close-btn" id="closeBtn">×</button>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="https://racoonindisguise.github.io/tylers.happy.place/other/morestuff.html">More Games</a></li>
+            <li><a href="aboutme.html">About Me</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <img src="starlogo.png" alt="Star Logo" class="star-logo">
+        <h1>Tyler's Happy Place</h1>
+
+        <div class="game-btns">
+            <button class="game-btn" onclick="location.href='game.html'">Bubble Pop</button>
+            <button class="game-btn" onclick="location.href='game2.html'">Subway Surfers</button>
+            <button class="game-btn" onclick="location.href='game3.html'">Solitaire</button>
+            <button class="game-btn" onclick="location.href='Geometry Dash World Toxic Factory (1).html'">Geometry Dash</button>
+            <button class="game-btn" onclick="location.href='flash.html'">Ruffle Flash Emulator</button>
+            <button class="game-btn" onclick="location.href='fnaf1game.html'">Fnaf 1</button>
+            <button class="game-btn" onclick="location.href='eaglercraft.1.5.2.html'">Minecraft</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('menuBtn');
+            const menu = document.getElementById('menu');
+            const closeBtn = document.getElementById('closeBtn');
+
+            menuBtn.addEventListener('click', () => {
+                menu.classList.add('open');
+                menuBtn.style.display = 'none';
+                closeBtn.style.display = 'block';
+            });
+
+            closeBtn.addEventListener('click', () => {
+                menu.classList.remove('open');
+                closeBtn.style.display = 'none';
+                menuBtn.style.display = 'block';
+            });
+
+            // Close menu when clicking on a menu item
+            const menuItems = document.querySelectorAll('.menu a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    menu.classList.remove('open');
+                    closeBtn.style.display = 'none';
+                    menuBtn.style.display = 'block';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
