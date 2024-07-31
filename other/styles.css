@@ -33,16 +33,32 @@ p {
 
 /* Button styling */
 .button {
+    display: flex;
+    flex-direction: column; /* Arrange items vertically */
+    align-items: center;
+    justify-content: center;
     background-color: #FF0000; /* Red */
     color: #FFFFFF; /* White text */
     border: none;
-    padding: 10px 20px;
+    padding: 10px;
     font-size: 19px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     margin: 10px;
     border-radius: 8px;
     outline: none;
+    text-align: center;
+}
+
+.button img {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    margin-bottom: 5px; /* Space between image and text */
+    border-radius: 5px;
+}
+
+.button-text {
+    font-weight: bold; /* Make the text bold */
 }
 
 .button:hover {
@@ -136,3 +152,4 @@ p {
 .close-btn:hover {
     color: #ccccff; /* Lighter color on hover */
 }
+
