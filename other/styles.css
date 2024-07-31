@@ -20,6 +20,7 @@ body {
     z-index: 1; /* Ensure content is above the background GIF */
 }
 
+/* Center the title and description */
 h1 {
     margin-top: 0;
     font-size: 2.5em;
@@ -34,7 +35,7 @@ p {
 /* Button styling */
 .button {
     display: flex;
-    flex-direction: column; /* Arrange items vertically */
+    flex-direction: column; /* Stack image and text vertically */
     align-items: center;
     justify-content: center;
     background-color: #FF0000; /* Red */
@@ -48,12 +49,13 @@ p {
     border-radius: 8px;
     outline: none;
     text-align: center;
+    width: 150px; /* Set a consistent width for buttons */
 }
 
 .button img {
     width: 100px; /* Adjust size as needed */
     height: 100px; /* Adjust size as needed */
-    margin-bottom: 5px; /* Space between image and text */
+    margin-bottom: 10px; /* Space between image and text */
     border-radius: 5px;
 }
 
@@ -64,6 +66,13 @@ p {
 .button:hover {
     background-color: #FFFFFF; /* White */
     color: #000000; /* Black text */
+}
+
+/* Container for buttons to ensure they are displayed next to each other */
+.buttons-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line if needed */
+    justify-content: center; /* Center align buttons horizontally */
 }
 
 /* Menu button styling */
@@ -152,4 +161,3 @@ p {
 .close-btn:hover {
     color: #ccccff; /* Lighter color on hover */
 }
-
