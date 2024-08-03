@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup Page</title>
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -50,6 +49,9 @@
         .form-group button:hover {
             background-color: #0056b3;
         }
+        .captcha {
+            margin-bottom: 15px;
+        }
         .message {
             margin-top: 20px;
         }
@@ -67,8 +69,9 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <div class="form-group">
-                <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY"></div>
+            <div class="captcha">
+                <span id="captcha-question"></span>
+                <input type="text" id="captcha-answer" name="captcha" placeholder="Answer" required>
             </div>
             <div class="form-group">
                 <button type="submit">Sign Up</button>
@@ -78,25 +81,42 @@
     </div>
 
     <script>
+        // Function to generate a random arithmetic problem
+        function generateCaptcha() {
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            const operation = Math.random() > 0.5 ? '+' : '-';
+            const question = `${num1} ${operation} ${num2}`;
+            const answer = operation === '+' ? num1 + num2 : num1 - num2;
+            
+            return { question, answer };
+        }
+
+        // Display the CAPTCHA question
+        const captcha = generateCaptcha();
+        document.getElementById('captcha-question').innerText = `Solve: ${captcha.question}`;
+
+        // Handle form submission
         document.getElementById('signupForm').addEventListener('submit', function(event) {
             event.preventDefault();
-
+            
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const turnstileResponse = document.querySelector('.cf-turnstile').getAttribute('data-response');
+            const captchaAnswer = parseInt(document.getElementById('captcha-answer').value, 10);
 
-            if (!turnstileResponse) {
-                document.getElementById('message').innerText = 'Please complete the Turnstile challenge';
+            // Check if CAPTCHA answer is correct
+            if (captchaAnswer !== captcha.answer) {
+                document.getElementById('message').innerText = 'CAPTCHA answer is incorrect.';
                 return;
             }
 
-            // Simulate an AJAX request (you need to implement this on the server-side)
+            // Simulate an AJAX request (implement this on the server-side)
             fetch('/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email, password, turnstileResponse })
+                body: JSON.stringify({ email, password })
             })
             .then(response => response.json())
             .then(data => {
