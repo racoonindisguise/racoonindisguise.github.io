@@ -76,7 +76,7 @@
                 <button type="submit">Login</button>
             </div>
             <div class="message" id="message"></div>
-            <img id="profileImg" class="profile-img" src="" alt="Profile Picture">
+            <img id="profileImg" class="profile-img" src="" alt="Profile Picture" style="display: none;">
         </form>
     </div>
 
@@ -95,7 +95,7 @@
             if (email === storedEmail && password === storedPassword) {
                 document.getElementById('message').innerText = 'Login successful! Redirecting to home page...';
                 setTimeout(function() {
-                    window.location.href = 'https://racoonindisguise.github.io/tylers.happy.place/'; // Redirect to home page
+                    window.location.href = 'index.html'; // Redirect to home page
                 }, 2000);
             } else {
                 document.getElementById('message').innerText = 'Invalid email or password.';
@@ -104,6 +104,7 @@
             // Display profile picture if available
             if (storedProfilePic) {
                 document.getElementById('profileImg').src = storedProfilePic;
+                document.getElementById('profileImg').style.display = 'block';
             }
         });
     </script>
