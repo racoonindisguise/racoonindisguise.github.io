@@ -14,7 +14,7 @@
             margin: 0;
             background-color: #f4f4f4;
         }
-        .signup-container {
+        .container {
             background: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -22,7 +22,7 @@
             max-width: 400px;
             width: 100%;
         }
-        .signup-container h2 {
+        .container h2 {
             margin-bottom: 20px;
         }
         .form-group {
@@ -32,7 +32,9 @@
             display: block;
             margin-bottom: 5px;
         }
-        .form-group input {
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group input[type="file"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -49,17 +51,20 @@
         .form-group button:hover {
             background-color: #0056b3;
         }
-        .captcha {
-            margin-bottom: 15px;
-        }
         .message {
             margin-top: 20px;
+        }
+        .profile-img {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="signup-container">
-        <h2>Sign Up</h2>
+    <div class="container">
+        <h2>Signup</h2>
         <form id="signupForm">
             <div class="form-group">
                 <label for="email">Email</label>
@@ -69,9 +74,10 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <div class="captcha">
-                <span id="captcha-question"></span>
-                <input type="text" id="captcha-answer" name="captcha" placeholder="Answer" required>
+            <div class="form-group">
+                <label for="profilePic">Profile Picture</label>
+                <input type="file" id="profilePic" name="profilePic" accept="image/*">
+                <img id="profileImgPreview" class="profile-img" src="" alt="Profile Picture">
             </div>
             <div class="form-group">
                 <button type="submit">Sign Up</button>
@@ -81,57 +87,54 @@
     </div>
 
     <script>
-        // Function to generate a random arithmetic problem
-        function generateCaptcha() {
-            const num1 = Math.floor(Math.random() * 10) + 1;
-            const num2 = Math.floor(Math.random() * 10) + 1;
-            const operation = Math.random() > 0.5 ? '+' : '-';
-            const question = `${num1} ${operation} ${num2}`;
-            const answer = operation === '+' ? num1 + num2 : num1 - num2;
-            
-            return { question, answer };
-        }
+        const form = document.getElementById('signupForm');
+        const profilePicInput = document.getElementById('profilePic');
+        const profileImgPreview = document.getElementById('profileImgPreview');
+        
+        // Handle file preview
+        profilePicInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profileImgPreview.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
 
-        // Display the CAPTCHA question
-        const captcha = generateCaptcha();
-        document.getElementById('captcha-question').innerText = `Solve: ${captcha.question}`;
-
-        // Handle form submission
-        document.getElementById('signupForm').addEventListener('submit', function(event) {
+        form.addEventListener('submit', function(event) {
             event.preventDefault();
             
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const captchaAnswer = parseInt(document.getElementById('captcha-answer').value, 10);
-
-            // Check if CAPTCHA answer is correct
-            if (captchaAnswer !== captcha.answer) {
-                document.getElementById('message').innerText = 'CAPTCHA answer is incorrect.';
+            const profilePic = profilePicInput.files[0];
+            
+            if (!email || !password) {
+                document.getElementById('message').innerText = 'Please fill all required fields.';
                 return;
             }
 
-            // Simulate an AJAX request (implement this on the server-side)
-            fetch('/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, password })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
+            // Save user data in localStorage
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userPassword', password);
+
+            if (profilePic) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('userProfilePic', e.target.result);
                     document.getElementById('message').innerText = 'Signup successful! Redirecting to login page...';
                     setTimeout(function() {
-                        window.location.href = 'login.html'; // Redirect to login page
+                        window.location.href = 'login.html';
                     }, 2000);
-                } else {
-                    document.getElementById('message').innerText = 'Error: ' + data.message;
-                }
-            })
-            .catch(error => {
-                document.getElementById('message').innerText = 'Error: ' + error.message;
-            });
+                };
+                reader.readAsDataURL(profilePic);
+            } else {
+                document.getElementById('message').innerText = 'Signup successful! Redirecting to login page...';
+                setTimeout(function() {
+                    window.location.href = 'login.html';
+                }, 2000);
+            }
         });
     </script>
 </body>
