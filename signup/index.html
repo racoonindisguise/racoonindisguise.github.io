@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup Page</title>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -68,7 +68,7 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <div class="form-group">
-                <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
+                <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY"></div>
             </div>
             <div class="form-group">
                 <button type="submit">Sign Up</button>
@@ -83,10 +83,10 @@
 
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const recaptchaResponse = grecaptcha.getResponse();
+            const turnstileResponse = document.querySelector('.cf-turnstile').getAttribute('data-response');
 
-            if (!recaptchaResponse) {
-                document.getElementById('message').innerText = 'Please complete the reCAPTCHA';
+            if (!turnstileResponse) {
+                document.getElementById('message').innerText = 'Please complete the Turnstile challenge';
                 return;
             }
 
@@ -96,7 +96,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email, password, recaptchaResponse })
+                body: JSON.stringify({ email, password, turnstileResponse })
             })
             .then(response => response.json())
             .then(data => {
