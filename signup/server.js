@@ -6,30 +6,26 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const SECRET_KEY = 'YOUR_RECAPTCHA_SECRET_KEY';
-
-// Dummy storage for demonstration purposes
-let users = [];
+const TURNSTILE_SECRET_KEY = 'YOUR_TURNSTILE_SECRET_KEY';
 
 app.post('/signup', async (req, res) => {
-    const { email, password, recaptchaResponse } = req.body;
+    const { email, password, turnstileResponse } = req.body;
 
-    // Verify reCAPTCHA
+    // Verify Turnstile response
     try {
-        const recaptchaVerification = await axios.post(`https://www.google.com/recaptcha/api/siteverify`, null, {
+        const verificationResponse = await axios.post('https://challenges.cloudflare.com/turnstile/v0/siteverify', null, {
             params: {
-                secret: SECRET_KEY,
-                response: recaptchaResponse
+                secret: TURNSTILE_SECRET_KEY,
+                response: turnstileResponse
             }
         });
 
-        if (!recaptchaVerification.data.success) {
-            return res.status(400).json({ success: false, message: 'reCAPTCHA verification failed.' });
+        if (!verificationResponse.data.success) {
+            return res.status(400).json({ success: false, message: 'Turnstile verification failed.' });
         }
 
         // Simulate storing user information
-        users.push({ email, password });
-
+        // Here you would typically save the user to your database
         res.json({ success: true, message: 'Signup successful!' });
     } catch (error) {
         res.status(500).json({ success: false, message: 'Server error: ' + error.message });
