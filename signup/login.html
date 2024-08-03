@@ -58,6 +58,23 @@
             border-radius: 50%;
             margin-bottom: 10px;
         }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -78,6 +95,18 @@
             <div class="message" id="message"></div>
             <img id="profileImg" class="profile-img" src="" alt="Profile Picture" style="display: none;">
         </form>
+        <button id="changePfpBtn">Change Profile Picture</button>
+    </div>
+
+    <!-- Popup for changing profile picture -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h2>Change Profile Picture</h2>
+            <input type="file" id="newProfilePic" accept="image/*">
+            <img id="newProfilePicPreview" class="profile-img" src="" alt="New Profile Picture">
+            <button id="savePfpBtn">Save</button>
+            <button id="closePopupBtn">Close</button>
+        </div>
     </div>
 
     <script>
@@ -93,7 +122,7 @@
             const storedProfilePic = localStorage.getItem('userProfilePic');
 
             if (email === storedEmail && password === storedPassword) {
-                document.getElementById('message').innerText = 'Login successful! Redirecting to home page...';
+                document.getElementById('message').innerText = 'Login successful!';
                 setTimeout(function() {
                     window.location.href = 'index.html'; // Redirect to home page
                 }, 2000);
@@ -106,6 +135,39 @@
                 document.getElementById('profileImg').src = storedProfilePic;
                 document.getElementById('profileImg').style.display = 'block';
             }
+        });
+
+        // Handle change profile picture
+        document.getElementById('changePfpBtn').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'flex';
+        });
+
+        document.getElementById('newProfilePic').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('newProfilePicPreview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('savePfpBtn').addEventListener('click', function() {
+            const newProfilePic = document.getElementById('newProfilePic').files[0];
+            if (newProfilePic) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('userProfilePic', e.target.result);
+                    document.getElementById('profileImg').src = e.target.result;
+                    document.getElementById('popup').style.display = 'none';
+                };
+                reader.readAsDataURL(newProfilePic);
+            }
+        });
+
+        document.getElementById('closePopupBtn').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'none';
         });
     </script>
 </body>
