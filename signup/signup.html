@@ -76,7 +76,7 @@
             </div>
             <div class="form-group">
                 <label for="profilePic">Profile Picture</label>
-                <input type="file" id="profilePic" name="profilePic" accept="image/*">
+                <input type="file" id="profilePic" name="profilePic" accept="image/*" required>
                 <img id="profileImgPreview" class="profile-img" src="" alt="Profile Picture">
             </div>
             <div class="form-group">
@@ -110,7 +110,7 @@
             const password = document.getElementById('password').value;
             const profilePic = profilePicInput.files[0];
             
-            if (!email || !password) {
+            if (!email || !password || !profilePic) {
                 document.getElementById('message').innerText = 'Please fill all required fields.';
                 return;
             }
@@ -119,22 +119,15 @@
             localStorage.setItem('userEmail', email);
             localStorage.setItem('userPassword', password);
 
-            if (profilePic) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    localStorage.setItem('userProfilePic', e.target.result);
-                    document.getElementById('message').innerText = 'Signup successful! Redirecting to login page...';
-                    setTimeout(function() {
-                        window.location.href = 'login.html';
-                    }, 2000);
-                };
-                reader.readAsDataURL(profilePic);
-            } else {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                localStorage.setItem('userProfilePic', e.target.result);
                 document.getElementById('message').innerText = 'Signup successful! Redirecting to login page...';
                 setTimeout(function() {
                     window.location.href = 'login.html';
                 }, 2000);
-            }
+            };
+            reader.readAsDataURL(profilePic);
         });
     </script>
 </body>
