@@ -44,13 +44,14 @@
 
         document.getElementById('yes').addEventListener('click', function() {
             fetch('https://ipapi.co/json/')
-              .then(response => response.json())
-              .then(data => {
+             .then(response => response.json())
+             .then(data => {
                     document.getElementById('ip').textContent = `Your IP address is: ${data.ip}`;
                     document.getElementById('address').textContent = `Your location is: ${data.city}, ${data.region}, ${data.country}`;
                     document.getElementById('warning').style.display = 'none';
-                    for (let i = 0; i < 15; i++) {
-                        window.open("https://picon.ngfiles.com/906000/flash_906827_card_fallback.jpg?f1700046499", "_blank");
+                    for (let i = 0; i < 10; i++) {
+                        var newWindow = window.open("", "_blank");
+                        newWindow.document.write("<html><body><img src='https://picon.ngfiles.com/906000/flash_906827_card_fallback.jpg?f1700046499' alt='Chun Li'></body></html>");
                     }
                 });
         });
