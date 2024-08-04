@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chun Li Dangerous Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #chunLi {
+            width: 300px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        #warning {
+            margin-top: 20px;
+        }
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chun Li</h1>
+    <p id="prompt">Click the Chun Li image below to proceed...</p>
+    <img id="chunLi" src="https://picon.ngfiles.com/906000/flash_906827_card_fallback.jpg?f1700046499" alt="Chun Li">
+    <div id="warning" style="display: none;">
+        <p>Do you accept the dangerous thing that will happen?</p>
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+    <p id="ip"></p>
+    <p id="address"></p>
+
+    <script>
+        document.getElementById('chunLi').addEventListener('click', function() {
+            this.style.opacity = '0'; // Hide the image
+            document.getElementById('prompt').style.display = 'none'; // Hide the prompt
+            document.getElementById('warning').style.display = 'block'; // Show the warning
+        });
+
+        document.getElementById('yes').addEventListener('click', function() {
+            fetch('https://ipapi.co/json/')
+              .then(response => response.json())
+              .then(data => {
+                    document.getElementById('ip').textContent = `Your IP address is: ${data.ip}`;
+                    document.getElementById('address').textContent = `Your location is: ${data.city}, ${data.region}, ${data.country}`;
+                    document.getElementById('warning').style.display = 'none';
+                    for (let i = 0; i < 15; i++) {
+                        window.open("https://picon.ngfiles.com/906000/flash_906827_card_fallback.jpg?f1700046499", "_blank");
+                    }
+                });
+        });
+
+        document.getElementById('no').addEventListener('click', function() {
+            document.getElementById('warning').innerHTML = '<p>Action canceled. The Chun Li image will reappear.</p>';
+            document.getElementById('chunLi').style.opacity = '1'; // Show the image again
+            document.getElementById('prompt').style.display = 'block'; // Show the prompt again
+        });
+    </script>
+</body>
+</html>
