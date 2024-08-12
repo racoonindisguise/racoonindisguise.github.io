@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>About Me</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif; /* modern font */
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* prevent horizontal scroll */
+    }
+    .parallax {
+      /* Parallax effect */
+      background-image: url('your-background-image.jpg'); /* Replace with your image */
+      height: 400px; /* Adjust height as needed */
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+      z-index: -1; /* ensure it stays behind content */
+    }
+    .content {
+      text-align: center;
+      padding: 40px;
+      background-color: #f7f7f7; /* light gray background */
+    }
+    h1 {
+      font-size: 48px; /* large font size */
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: #333; /* dark gray text */
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #666; /* medium gray text */
+    }
+    .marquee-container {
+      background-color: #ffffff; /* white background */
+      padding: 10px;
+      margin: 20px auto;
+      max-width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .marquee-text {
+      display: inline-block;
+      white-space: nowrap;
+      position: absolute;
+      width: 100%;
+      animation: marquee 10s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #ffffff; /* white background */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* subtle shadow */
+    }
+    .go-back-btn {
+      background-color: #4CAF50; /* green button */
+      color: #ffffff; /* white text */
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 10px; /* rounded edges */
+    }
+    .go-back-btn:hover {
+      background-color: #3e8e41; /* darker green on hover */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* subtle shadow on hover */
+    }
+    footer {
+      background-color: #333; /* dark footer background */
+      color: #fff; /* white text */
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* New Content Styles */
+    .first-wrap {
+      background: #eeeeee;
+      padding: 60px 0;
+      text-align: center;
+    }
+    .first-div {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .new-update {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .first-inner-div {
+      margin-top: 20px;
+    }
+    .down-arrow {
+      font-size: 24px;
+      color: #4CAF50;
+    }
+    .second-wrap, .third-wrap {
+      background: #f7f7f7;
+      padding: 60px 0;
+      text-align: center;
+    }
+    .second-div, .fourth-div {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .body-text {
+      font-size: 18px;
+      margin: 0;
+    }
+    .line-separator {
+      border-top: 1px solid #cccccc;
+      display: inline-block;
+      width: 20%;
+      vertical-align: middle;
+    }
+    #back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4CAF50; /* green button */
+      color: #ffffff; /* white text */
+      border: none;
+      padding: 10px 15px;
+      font-size: 20px;
+      cursor: pointer;
+      border-radius: 50%;
+      text-align: center;
+      text-decoration: none;
+    }
+    #back-to-top:hover {
+      background-color: #3e8e41; /* darker green on hover */
+    }
+  </style>
+</head>
+<body>
+  <div class="parallax"></div>
+
+  <div class="content">
+    <div class="marquee-container">
+      <div class="marquee-text">Welcome to my About Me page! Enjoy your stay and explore more!</div>
+    </div>
+
+    <div class="container">
+      <h1>About Me</h1>
+      <p>I am a video game coder and I made this website out of curiosity on how far I could get, and now I'm here!</p>
+      <p>*enjoy*</p>
+      <button class="go-back-btn" onclick="location.href='index.html'">Go Back</button>
+    </div>
+  </div>
+
+  <div class="first-wrap">
+    <div class="first-div">
+      <p class="new-update">
+        Note: Click
+        <a href="https://codepen.io/nikkz/pen/qZJKqG" target="_blank">here</a>
+        to see newer and easier parallax effect
+      </p>
+      <div class="first-inner-div">
+        <p>Start Scrolling</p>
+        <a href="#anchor">
+          <span class="glyphicon glyphicon-circle-arrow-down down-arrow"></span>
+        </a>      
+      </div>
+    </div>
+  </div>
+
+  <div class="second-wrap">
+    <div class="second-div" id="anchor">
+      <p class="body-text">
+        <span class="line-separator"></span> Sample parallax with different background images
+        <span class="line-separator"></span>
+      </p>
+    </div>
+    <div class="third-div"></div>
+  </div>
+
+  <div class="third-wrap">
+    <div class="fourth-div">
+      <p class="body-text">
+        <span class="line-separator"></span> Sample parallax with different background images
+        <span class="line-separator"></span>
+      </p>
+    </div>
+    <div class="fifth-div"></div>
+  </div>
+
+  <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
+
+  <footer>
+    <p>Footer Content Here &copy; 2024</p>
+  </footer>
+</body>
+</html>
