@@ -1,5 +1,3 @@
-<!-- about-me.html -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +5,23 @@
   <style>
     body {
       font-family: 'Poppins', sans-serif; /* modern font */
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* prevent horizontal scroll */
+    }
+    .parallax {
+      /* Parallax effect */
+      background-image: url('your-background-image.jpg'); /* Replace with your image */
+      height: 400px; /* Adjust height as needed */
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .content {
       text-align: center;
-      background-color: #f7f7f7; /* light gray background */
       padding: 40px;
+      background-color: #f7f7f7; /* light gray background */
     }
     h1 {
       font-size: 48px; /* large font size */
@@ -21,6 +33,25 @@
       font-size: 18px;
       margin-bottom: 20px;
       color: #666; /* medium gray text */
+    }
+    .marquee-container {
+      background-color: #ffffff; /* white background */
+      padding: 10px;
+      margin: 20px auto;
+      max-width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .marquee-text {
+      display: inline-block;
+      white-space: nowrap;
+      position: absolute;
+      width: 100%;
+      animation: marquee 10s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
     .container {
       max-width: 800px;
@@ -46,11 +77,19 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>About Me</h1>
-    <p>I am a video game coder and I made this website out of curiosity on how far I could get, and now I'm here!</p>
-    <p>*enjoy*</p>
-    <button class="go-back-btn" onclick="location.href='index.html'">Go Back</button>
+  <div class="parallax"></div>
+
+  <div class="content">
+    <div class="marquee-container">
+      <div class="marquee-text">Welcome to my About Me page! Enjoy your stay and explore more!</div>
+    </div>
+
+    <div class="container">
+      <h1>About Me</h1>
+      <p>I am a video game coder and I made this website out of curiosity on how far I could get, and now I'm here!</p>
+      <p>*enjoy*</p>
+      <button class="go-back-btn" onclick="location.href='index.html'">Go Back</button>
+    </div>
   </div>
 </body>
 </html>
